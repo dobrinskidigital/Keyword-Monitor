@@ -27,7 +27,7 @@ KEYWORDS = [
 ]
 
 # Who receives the alert email.
-RECIPIENT = "krista@example.com"
+RECIPIENT = "mike@dobrinskidigital.com"
 
 # "instant" -> email each new match as it's found (use the 30-min schedule).
 # "daily"   -> one digest email per run          (use the once-a-day schedule).
