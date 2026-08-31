@@ -27,14 +27,14 @@ KEYWORDS = [
 ]
 
 # Who receives the alert email.
-RECIPIENT = "michaeldobrinski@gmail.com"
+RECIPIENT = "YOUR-EMAIL@EXAMPLE.COM"
 
 # "instant" -> email each new match as it's found (use the 30-min schedule).
 # "daily"   -> one digest email per run          (use the once-a-day schedule).
 MODE = "daily"
 
 # How many days back to scan each run (safety net for any missed runs).
-LOOKBACK_DAYS = 365
+LOOKBACK_DAYS = 30
 
 # ============================================================
 # You shouldn't need to touch anything below here.
