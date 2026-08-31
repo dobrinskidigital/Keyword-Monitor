@@ -1,0 +1,41 @@
+name: Regulation Monitor
+
+on:
+  schedule:
+    # INSTANT mode: check every 30 minutes.
+    - cron: "*/30 * * * *"
+    # DAILY mode: comment out the line above, uncomment the one below.
+    # 12:00 UTC = 8:00 AM US Eastern (daylight). Use "0 13 * * *" for standard time.
+    # - cron: "0 12 * * *"
+  workflow_dispatch:        # adds a manual "Run" button in the Actions tab
+
+permissions:
+  contents: write           # lets the job save state.json back to the repo
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run monitor
+        env:
+          SMTP_HOST: smtp.gmail.com
+          SMTP_PORT: "587"
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+        run: python monitor.py
+
+      - name: Save state
+        run: |
+          if [[ -n "$(git status --porcelain state.json)" ]]; then
+            git config user.name "reg-monitor-bot"
+            git config user.email "bot@users.noreply.github.com"
+            git add state.json
+            git commit -m "Update seen documents"
+            git push
+          fi
