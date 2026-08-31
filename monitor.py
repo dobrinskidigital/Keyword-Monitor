@@ -31,10 +31,10 @@ RECIPIENT = "mike@dobrinskidigital.com"
 
 # "instant" -> email each new match as it's found (use the 30-min schedule).
 # "daily"   -> one digest email per run          (use the once-a-day schedule).
-MODE = "instant"
+MODE = "daily"
 
 # How many days back to scan each run (safety net for any missed runs).
-LOOKBACK_DAYS = 2
+LOOKBACK_DAYS = 365
 
 # ============================================================
 # You shouldn't need to touch anything below here.
